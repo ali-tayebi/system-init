@@ -88,9 +88,11 @@ sudo apt-get install unzip curl jq -y
 # Create standard github clone location
 mkdir -p ~/code/github
 
-install_git
+#install_git
 source "./setup-shell.sh"
-install_devtools
+#install_devtools
+
+# install docker 
 install_docker
 
 rm -rf $tmpDir
