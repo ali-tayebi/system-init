@@ -93,6 +93,29 @@ source "./setup-shell.sh"
 #install_devtools
 
 # install docker 
-install_docker
+    echo -e '\e[0;33mSetting up docker\e[0m'
+
+    sudo apt-get update
+    sudo apt-get install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg-agent \
+        software-properties-common \
+        -y
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    sudo add-apt-repository --yes \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable nightly test"
+
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+    
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    sudo /etc/init.d/docker start
 
 rm -rf $tmpDir
